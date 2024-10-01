@@ -73,7 +73,7 @@ export const login = async (req, res) => {
       profilePic: user.profilPic,
     });
   } catch (error) {
-    console.log("Error in login controller", error.massage);
+    console.log("Error in login controller", error.message);
 
     res.status(500).json({ error: "Internal Server Error" });
   }
