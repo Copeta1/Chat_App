@@ -15,7 +15,7 @@ export const SocketContextProvider = ({ children }) => {
 
   useEffect(() => {
     if (authUser) {
-      // tu treba ici bazapodataka
+      // tu treba ići link web stranice kada se objavi
       const socket = io("http://localhost:3001", {
         query: {
           userId: authUser._id,
