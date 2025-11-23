@@ -24,6 +24,8 @@ app.use(
   cors({
     origin: allowedOrigin,
     credentials: true,
+    methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
+    optionsSuccessStatus: 204,
   })
 );
 
