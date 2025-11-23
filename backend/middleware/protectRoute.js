@@ -6,6 +6,11 @@ const protectRoute = async (req, res, next) => {
     console.log("Incoming cookies:", req.cookies);
     const token = req.cookies.jwt;
 
+    console.log(
+      "Incoming token (Cookie):",
+      token ? "Token received" : "No token"
+    );
+
     if (!token) {
       console.log("Auth Fail: No JWT token found in cookies.");
       return res
