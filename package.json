@@ -4,7 +4,8 @@
   "main": "server.js",
   "scripts": {
     "server": "nodemon backend/server.js",
-    "start" : "node backend/server.js"
+    "start" : "node backend/server.js",
+    "build": "echo 'No frontend build needed in root. Starting server.'"
 
   },
   "type" : "module",
