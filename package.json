@@ -3,9 +3,10 @@
   "version": "1.0.0",
   "main": "server.js",
   "scripts": {
+    "start-backend": "node backend/server.js",
     "server": "nodemon backend/server.js",
     "start" : "node backend/server.js",
-    "build": "echo 'No frontend build needed in root. Starting server.'"
+    "build": "echo 'Deploying backend only. Frontend handled by Vercel.'" 
 
   },
   "type" : "module",
