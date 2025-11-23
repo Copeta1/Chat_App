@@ -18,11 +18,11 @@ const __dirname = path.resolve();
 
 dotenv.config();
 
-const allowedOrigin = process.env.FRONTEND_URL;
+const ALLOWED_ORIGIN = process.env.FRONTEND_URL || "http://localhost:5173";
 
 app.use(
   cors({
-    origin: allowedOrigin,
+    origin: ALLOWED_ORIGIN,
     credentials: true,
     methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
     optionsSuccessStatus: 204,

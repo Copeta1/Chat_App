@@ -12,8 +12,6 @@ const useSendMessage = () => {
   const sendMessage = async (message) => {
     setLoading(true);
     try {
-      // UKLONJENO: Dohvaćanje tokena iz LocalStoragea
-
       const res = await fetch(
         `${API_BASE_URL}/api/messages/send/${selectedConversation._id}`,
         {
