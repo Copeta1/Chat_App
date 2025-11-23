@@ -5,11 +5,14 @@ const useGetConversations = () => {
   const [loading, setLoading] = useState(false);
   const [conversations, setConversations] = useState([]);
 
+  const API_BASE_URL =
+    import.meta.env.VITE_APP_API_URL || "http://localhost:3001";
+
   useEffect(() => {
     const getConversations = async () => {
       setLoading(true);
       try {
-        const res = await fetch("/api/users");
+        const res = await fetch(`${API_BASE_URL}/api/users`);
         const data = await res.json();
 
         if (data.error) {

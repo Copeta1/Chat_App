@@ -8,6 +8,9 @@ export const useSocketContext = () => {
   return useContext(SocketContext);
 };
 
+const API_BASE_URL =
+  import.meta.env.VITE_APP_API_URL || "http://localhost:3001";
+
 export const SocketContextProvider = ({ children }) => {
   const [socket, setSocket] = useState(null);
   const [onlineUsers, setOnlineUsers] = useState([]);
@@ -15,8 +18,7 @@ export const SocketContextProvider = ({ children }) => {
 
   useEffect(() => {
     if (authUser) {
-      // tu treba ići link web stranice kada se objavi
-      const socket = io("http://localhost:3001", {
+      const socket = io(API_BASE_URL, {
         query: {
           userId: authUser._id,
         },

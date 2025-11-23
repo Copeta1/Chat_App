@@ -6,11 +6,14 @@ const useSendMessage = () => {
   const [loading, setLoading] = useState(false);
   const { messages, setMessages, selectedConversation } = useConversation();
 
+  const API_BASE_URL =
+    import.meta.env.VITE_APP_API_URL || "http://localhost:3001";
+
   const sendMessage = async (message) => {
     setLoading(true);
     try {
       const res = await fetch(
-        `/api/messages/send/${selectedConversation._id}`,
+        `${API_BASE_URL}/api/messages/send/${selectedConversation._id}`,
         {
           method: "POST",
           headers: {
