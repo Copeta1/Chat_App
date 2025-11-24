@@ -14,14 +14,14 @@ import { app, server } from "./socket/socket.js";
 
 const PORT = process.env.PORT || 3001;
 
-const __dirname = path.resolve();
-
 dotenv.config();
 
 const ALLOWED_ORIGIN = process.env.FRONTEND_URL || "http://localhost:5173";
 
 console.log(`CORS Allowed Origin set to: ${ALLOWED_ORIGIN}`);
 console.log(`Is in Production/Deployment mode: ${!!process.env.FRONTEND_URL}`);
+
+console.log(`NODE_ENV is set to: ${process.env.NODE_ENV}`);
 
 app.use(
   cors({
