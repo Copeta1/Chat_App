@@ -20,6 +20,9 @@ dotenv.config();
 
 const ALLOWED_ORIGIN = process.env.FRONTEND_URL || "http://localhost:5173";
 
+console.log(`CORS Allowed Origin set to: ${ALLOWED_ORIGIN}`);
+console.log(`Is in Production/Deployment mode: ${!!process.env.FRONTEND_URL}`);
+
 app.use(
   cors({
     origin: ALLOWED_ORIGIN,
