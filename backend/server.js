@@ -10,7 +10,7 @@ import userRoutes from "./routes/user.routes.js";
 import cors from "cors";
 
 import connectToMongoDB from "./db/connectToMongoDB.js";
-import { app, server } from "./socket/socket.js";
+import { app as socketApp, server } from "./socket/socket.js";
 
 const PORT = process.env.PORT || 3001;
 
