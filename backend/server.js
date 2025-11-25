@@ -18,6 +18,10 @@ dotenv.config();
 
 const ALLOWED_ORIGIN = process.env.FRONTEND_URL || "http://localhost:3000";
 
+const app = socketApp;
+
+app.set("trust proxy", 1);
+
 console.log(`CORS Allowed Origin set to: ${ALLOWED_ORIGIN}`);
 console.log(`Is in Production/Deployment mode: ${!!process.env.FRONTEND_URL}`);
 
