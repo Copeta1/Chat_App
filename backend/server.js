@@ -18,16 +18,14 @@ dotenv.config();
 
 const ALLOWED_ORIGIN = process.env.FRONTEND_URL || "http://localhost:3000";
 
-const app = socketApp;
-
-app.set("trust proxy", 1);
+socketApp.set("trust proxy", 1);
 
 console.log(`CORS Allowed Origin set to: ${ALLOWED_ORIGIN}`);
 console.log(`Is in Production/Deployment mode: ${!!process.env.FRONTEND_URL}`);
 
 console.log(`NODE_ENV is set to: ${process.env.NODE_ENV}`);
 
-app.use(
+socketApp.use(
   cors({
     origin: ALLOWED_ORIGIN,
     credentials: true,
@@ -37,12 +35,12 @@ app.use(
   })
 );
 
-app.use(express.json());
+socketApp.use(express.json());
 app.use(cookieParser());
 
-app.use("/api/auth", authRoutes);
-app.use("/api/messages", messageRoutes);
-app.use("/api/users", userRoutes);
+socketApp.use("/api/auth", authRoutes);
+socketApp.use("/api/messages", messageRoutes);
+socketApp.use("/api/users", userRoutes);
 
 server.listen(PORT, () => {
   connectToMongoDB();
