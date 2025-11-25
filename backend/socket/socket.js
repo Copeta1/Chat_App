@@ -7,7 +7,7 @@ dotenv.config();
 
 const app = express();
 
-const SOCKET_CORS_ORIGIN = process.env.FRONTEND_URL || "http://localhost:3001";
+const SOCKET_CORS_ORIGIN = process.env.FRONTEND_URL || "http://localhost:3000";
 
 const server = http.createServer(app);
 const io = new Server(server, {
