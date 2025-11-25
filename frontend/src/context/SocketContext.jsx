@@ -21,8 +21,8 @@ export const SocketContextProvider = ({ children }) => {
       const socket = io(API_BASE_URL, {
         query: {
           userId: authUser._id,
-          withCredentials: true,
         },
+        withCredentials: true,
       });
 
       setSocket(socket);
