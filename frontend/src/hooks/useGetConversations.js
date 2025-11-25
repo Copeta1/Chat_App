@@ -14,6 +14,9 @@ const useGetConversations = () => {
       try {
         const res = await fetch(`${API_BASE_URL}/api/users`, {
           credentials: "include",
+          headers: {
+            "Content-Type": "application/json",
+          },
         });
         const data = await res.json();
 
