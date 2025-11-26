@@ -30,7 +30,6 @@ app.use(
     origin: ALLOWED_ORIGIN,
     credentials: true,
     methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
-    allowedHeaders: ["Content-Type", "Authorization", "Cookie"],
     optionsSuccessStatus: 204,
   })
 );
