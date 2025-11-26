@@ -12,8 +12,6 @@ const generateTokenAndSetCookie = (userId, res, next) => {
     secure: isProduction,
     sameSite: "None",
   });
-
-  next();
 };
 
 export default generateTokenAndSetCookie;
