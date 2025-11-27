@@ -39,19 +39,16 @@ const useSignup = () => {
           confirmPassword,
           gender,
         }),
-        credentials: "include",
       });
       const data = await res.json();
       if (data.error) {
         throw new Error(data.error);
       }
 
-      //localstorage
       localStorage.setItem("chat-user", JSON.stringify(data));
 
       setAuthUser(data);
-
-      console.log(data);
+      toast.success("Successfully registered and logged in!");
     } catch (error) {
       toast.error(error.message);
     } finally {

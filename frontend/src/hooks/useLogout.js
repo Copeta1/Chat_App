@@ -17,16 +17,16 @@ const useLogout = () => {
         headers: {
           "Content-Type": "application/json",
         },
-        credentials: "include",
       });
+
       const data = await res.json();
+
       if (data.error) {
         throw new Error(data.error);
       }
-
       localStorage.removeItem("chat-user");
-
       setAuthUser(null);
+      toast.success("Successfully logged out!");
     } catch (error) {
       toast.error(error.message);
     } finally {

@@ -2,12 +2,12 @@ import { useState } from "react";
 import toast from "react-hot-toast";
 import { useAuthContext } from "../context/AuthContext";
 
+const API_BASE_URL =
+  import.meta.env.VITE_APP_API_URL || "http://localhost:3001";
+
 const useLogin = () => {
   const [loading, setLoading] = useState(false);
   const { setAuthUser } = useAuthContext();
-
-  const API_BASE_URL =
-    import.meta.env.VITE_APP_API_URL || "http://localhost:3001";
 
   const login = async ({ username, password }) => {
     const success = handleInputErrors({
@@ -23,12 +23,14 @@ const useLogin = () => {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({ username, password }),
-        credentials: "include",
       });
+
       const data = await res.json();
+
       if (data.error) {
         throw new Error(data.error);
       }
+
       localStorage.setItem("chat-user", JSON.stringify(data));
 
       setAuthUser(data);
