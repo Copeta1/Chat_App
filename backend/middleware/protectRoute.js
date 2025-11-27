@@ -17,6 +17,11 @@ const protectRoute = async (req, res, next) => {
         .json({ error: "Unauthorized - No Token Provided" });
     }
 
+    if (!process.env.JWT_SECRET) {
+      console.log("❌ AUTH FAIL: JWT_SECRET is not defined in .env file.");
+      return res.status(500).json({ error: "Server Configuration Error" });
+    }
+
     const decoded = jwt.verify(token, process.env.JWT_SECRET);
 
     if (!decoded) {
@@ -26,9 +31,14 @@ const protectRoute = async (req, res, next) => {
     const user = await User.findById(decoded.userId).select("-password");
 
     if (!user) {
+      console.log(
+        `❌ AUTH FAIL: User ID ${decoded.userId} not found in database.`
+      );
       return res.status(404).json({ error: "User not found" });
     }
     req.user = user;
+
+    console.log(`✅ AUTH SUCCESS: User ID ${user._id} passed protectRoute.`);
 
     next();
   } catch (error) {

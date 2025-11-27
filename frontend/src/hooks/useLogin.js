@@ -25,6 +25,15 @@ const useLogin = () => {
         body: JSON.stringify({ username, password }),
       });
 
+      if (!res.ok) {
+        const errorData = await res.json().catch(() => ({
+          error: "Unknown authentication error. Status: " + res.status,
+        }));
+        throw new Error(
+          errorData.error || `Failed to login. Status: ${res.status}`
+        );
+      }
+
       const data = await res.json();
 
       if (data.error) {

@@ -14,6 +14,15 @@ const useGetConversations = () => {
       try {
         const authUser = JSON.parse(localStorage.getItem("chat-user"));
         const token = authUser?.token;
+        if (token) {
+          console.log(
+            "✅ FRONTEND LOG: Token pronađen, pokušavam dohvaćanje korisnika..."
+          );
+        } else {
+          console.log(
+            "❌ FRONTEND LOG: Token nije pronađen. Korisnik nije prijavljen."
+          );
+        }
 
         if (!token) {
           setConversations([]);
@@ -28,6 +37,9 @@ const useGetConversations = () => {
             Authorization: `Bearer ${token}`,
           },
         });
+        if (res.status !== 200) {
+          console.log(`⚠️ FRONTEND LOG: Status odgovora je ${res.status}.`);
+        }
 
         const data = await res.json();
 
@@ -39,6 +51,10 @@ const useGetConversations = () => {
           }
           throw new Error(data.error);
         }
+        console.log(
+          `✅ FRONTEND LOG: Uspješno dohvaćeno ${data.length} korisnika za Sidebar.`
+        );
+
         setConversations(data);
       } catch (error) {
         toast.error(error.message);

@@ -8,6 +8,10 @@ export const getUsersForSidebar = async (req, res) => {
       _id: { $ne: loggedInUserId },
     }).select("-password");
 
+    console.log(
+      `Pronađeno korisnika za Sidebar: ${filteredUsers.length}. Trenutni ID: ${loggedInUserId}`
+    );
+
     res.status(200).json(filteredUsers);
   } catch (error) {
     console.log("Error in getUsersForSidebar: ", error.message);

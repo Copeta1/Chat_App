@@ -27,12 +27,11 @@ export const signup = async (req, res) => {
       username,
       password: hashedPassword,
       gender,
-      profilPic: gender === "male" ? boyProfilePic : girlProfilePic,
+      profilePic: gender === "male" ? boyProfilePic : girlProfilePic,
     });
 
     if (newUser) {
-      //Generate JWT token here
-      generateTokenAndSetCookie(newUser._id, res);
+      const token = generateTokenAndSetCookie(newUser._id, res);
 
       await newUser.save();
 
@@ -40,13 +39,14 @@ export const signup = async (req, res) => {
         _id: newUser._id,
         fullName: newUser.fullName,
         username: newUser.username,
-        profilePic: newUser.profilPic,
+        profilePic: newUser.profilePic,
+        token: token,
       });
     } else {
       res.status(400).json({ error: "Failed to create user" });
     }
   } catch (error) {
-    console.log("Error in signup controller", error.massage);
+    console.log("Error in signup controller", error.message);
 
     res.status(500).json({ error: "Internal Server Error" });
   }
@@ -64,13 +64,14 @@ export const login = async (req, res) => {
     if (!user || !isPasswordCorrect) {
       return res.status(401).json({ error: "Invalid username or password" });
     }
-    generateTokenAndSetCookie(user._id, res);
+    const token = generateTokenAndSetCookie(user._id, res);
 
     res.status(200).json({
       _id: user._id,
       fullName: user.fullName,
       username: user.username,
-      profilePic: user.profilPic,
+      profilePic: user.profilePic,
+      token: token,
     });
   } catch (error) {
     console.log("Error in login controller", error.message);
