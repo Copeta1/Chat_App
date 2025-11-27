@@ -28,7 +28,6 @@ console.log(`NODE_ENV is set to: ${process.env.NODE_ENV}`);
 app.use(
   cors({
     origin: ALLOWED_ORIGIN,
-    credentials: true,
     methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
     optionsSuccessStatus: 204,
   })
